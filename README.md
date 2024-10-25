@@ -4,8 +4,9 @@ Detects and parses infostealer.
 
 ## Installation
 
-```bash
-
+```toml
+[dependencies]
+rust-infostealer-parser = { git = "https://github.com/anhnmt/rust-infostealer-parser", tag = "0.1.0" }
 ```
 
 ## Supports
