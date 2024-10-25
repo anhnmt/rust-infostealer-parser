@@ -1,0 +1,39 @@
+**************************************************************
+*                                                            *
+*          ______                   _ ___  ___               *
+*    ____  | ___ \                 | ||  \/  |               *
+*   / __ \ | |_/ / _ __   __ _   __| || .  . |  __ _ __  __  *
+*  / / _` || ___ \| '__| / _` | / _` || |\/| | / _` |\ \/ /  *
+* | | (_| || |_/ /| |   | (_| || (_| || |  | || (_| | >  <   *
+*  \ \__,_|\____/ |_|    \__,_| \__,_|\_|  |_/ \__,_|/_/\_\  *
+*   \____/                                                   *
+*                                                            *
+**************************************************************
+
+Build ID: @BradMax_logs
+IP: 186.155.170.56
+FileLocation: C:\Users\Usuario\AppData\Roaming\U2S97JaXI1.exe
+UserName: Usuario
+MachineName: EQUIPO4
+Country: CO
+Zip Code: 250010
+Location: Cota, Cundinamarca
+HWID: DB0CED0F097C9843167B2DCEDD56EDFC
+Current Language: Spanish (Colombia)
+ScreenSize: {Width=1920, Height=1080}
+TimeZone: (UTC-05:00) Bogotá, Lima, Quito, Rio Branco
+Operation System: Windows 11 Pro x64
+Log date: 10/11/2024 17:15:57
+
+Available KeyboardLayouts: 
+Spanish (Colombia)
+
+
+Hardwares: 
+Name: Total of RAM, 8084.21 Mb or 8476913664 bytes
+Name: Intel(R) Core(TM) i5-7400 CPU @ 3.00GHz, 4 Cores
+Name: Intel(R) HD Graphics 630, 1073741824 bytes
+
+
+Anti-Viruses: 
+Windows Defender

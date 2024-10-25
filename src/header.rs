@@ -24,6 +24,16 @@ _  /  / / _  ___ |  /|  / _  /   __/ /  / /___  / /_/ /_  _, _/_  /___
 /_/  /_/  /_/  |_/_/ |_/  /_/    /___/  \\____/  \\____/ /_/ |_| /_____/
 "#;
 
+const BRADMAX_HEADER: &str = r#"
+\*          ______                   _ ___  ___               \*
+\*    ____  | ___ \\                 | ||  \\/  |               \*
+\*   / __ \\ | |_/ / _ __   __ _   __| || .  . |  __ _ __  __  \*
+\*  / / _` || ___ \| '__| / _` | / _` || |\\/| | / _` |\\ \\/ /  \*
+\* | | \(_| || |_/ /| |   | \(_| || \(_| || |  | || \(_| | >  <   \*
+\*  \\ \\__,_|\\____/ |_|    \\__,_| \\__,_|\\_|  |_/ \\__,_|/_/\\_\\  \*
+\*   \\____/                                                   \*
+"#;
+
 pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>> {
     if body.trim().is_empty() {
         return Ok(false);
@@ -103,6 +113,24 @@ mod tests {
     fn manticore_password() {
         let message = fs::read_to_string("./test_data/MANTICORE_Passwords.txt").unwrap();
         let check = is_match_header(MANTICORE_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    // BRADMAX
+
+    #[test]
+    fn bradmax_userinfo() {
+        let message = fs::read_to_string("./test_data/BRADMAX_UserInformation.txt").unwrap();
+        let check = is_match_header(BRADMAX_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    #[test]
+    fn bradmax_password() {
+        let message = fs::read_to_string("./test_data/BRADMAX_Passwords.txt").unwrap();
+        let check = is_match_header(BRADMAX_HEADER, message.as_str()).unwrap();
 
         assert_eq!(check, true);
     }
