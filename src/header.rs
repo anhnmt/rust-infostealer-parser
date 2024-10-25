@@ -16,6 +16,14 @@ const REDLINE_HEADER: &str = r#"
 \*  |_| \\_|_____|____/|_____|___|_| \\_|_____|  \*
 "#;
 
+const MANTICORE_HEADER: &str = r#"
+______  ______________   ________________________________________________
+___   |/  /__    |__  | / /__  __/___  _/_  ____/_  __ \\__  __ \\__  ____/
+__  /|_/ /__  /| |_   |/ /__  /   __  / _  /    _  / / /_  /_/ /_  __/
+_  /  / / _  ___ |  /|  / _  /   __/ /  / /___  / /_/ /_  _, _/_  /___
+/_/  /_/  /_/  |_/_/ |_/  /_/    /___/  \\____/  \\____/ /_/ |_| /_____/
+"#;
+
 pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>> {
     if body.trim().is_empty() {
         return Ok(false);
@@ -45,6 +53,8 @@ mod tests {
     use crate::header::*;
     use std::fs;
 
+    // META
+
     #[test]
     fn meta_userinfo() {
         let message = fs::read_to_string("./test_data/META_UserInformation.txt").unwrap();
@@ -61,6 +71,8 @@ mod tests {
         assert_eq!(check, true);
     }
 
+    // REDLINE
+
     #[test]
     fn redline_userinfo() {
         let message = fs::read_to_string("./test_data/REDLINE_UserInformation.txt").unwrap();
@@ -73,6 +85,24 @@ mod tests {
     fn redline_password() {
         let message = fs::read_to_string("./test_data/REDLINE_Passwords.txt").unwrap();
         let check = is_match_header(REDLINE_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    // MANTICORE
+
+    #[test]
+    fn manticore_userinfo() {
+        let message = fs::read_to_string("./test_data/MANTICORE_UserInformation.txt").unwrap();
+        let check = is_match_header(MANTICORE_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    #[test]
+    fn manticore_password() {
+        let message = fs::read_to_string("./test_data/MANTICORE_Passwords.txt").unwrap();
+        let check = is_match_header(MANTICORE_HEADER, message.as_str()).unwrap();
 
         assert_eq!(check, true);
     }

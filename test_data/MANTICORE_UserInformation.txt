@@ -1,0 +1,41 @@
+
+______  ______________   ________________________________________________
+___   |/  /__    |__  | / /__  __/___  _/_  ____/_  __ \__  __ \__  ____/
+__  /|_/ /__  /| |_   |/ /__  /   __  / _  /    _  / / /_  /_/ /_  __/   
+_  /  / / _  ___ |  /|  / _  /   __/ /  / /___  / /_/ /_  _, _/_  /___   
+/_/  /_/  /_/  |_/_/ |_/  /_/    /___/  \____/  \____/ /_/ |_| /_____/   
+                                                                         
+────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────
+
+
+
+
+
+
+
+UserName: @ManticoreAdmin
+MachineName: DESKTOP-JFAL60I
+Country: BR
+Location: Sao Paulo, Sao Paulo
+HWID: EE9ECE436708204D85EB7EFBBD3F7004
+Current Language: Portuguese (Brazil)
+ScreenSize: {Width=1536, Height=864}
+TimeZone: (UTC-03:00) Brasília
+Operation System: Windows 11 Home Single Language x64
+Log date: 10/21/2024 19:28:10
+
+Available KeyboardLayouts:
+Portuguese (Brazil)
+English (United States)
+
+
+Hardwares:
+Name: Total of RAM, 16147.3 Mb or 16931676160 bytes
+Name: 11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz, 8 Cores
+Name: NVIDIA GeForce RTX 3050 Laptop GPU, 4293918720 bytes
+Name: Intel(R) UHD Graphics, 1073741824 bytes
+
+
+Anti-Viruses:
+Windows Defender
