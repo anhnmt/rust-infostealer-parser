@@ -1,0 +1,37 @@
+﻿***********************************************
+*                                             *
+*   ____  _____ ____  _     ___ _   _ _____   *
+*  |  _ \| ____|  _ \| |   |_ _| \ | | ____|  *
+*  | |_) |  _| | | | | |    | ||  \| |  _|    *
+*  |  _ <| |___| |_| | |___ | || |\  | |___   *
+*  |_| \_|_____|____/|_____|___|_| \_|_____|  *
+*                                             *
+***********************************************
+
+Build ID: Russia 34
+IP: 103.209.108.16
+FileLocation: C:\Users\Windows 10\AppData\Roaming\russia_logs.exe
+UserName: Windows 10
+MachineName: DESKTOP-V9S3282
+Country: BD
+Zip Code: 1312
+Location: Dhaka, Dhaka
+HWID: 6AFC8B7E6456169E3ED2F16BEDEF0339
+Current Language: English (United States)
+ScreenSize: {Width=1920, Height=1080}
+TimeZone: (UTC+06:00) Dhaka
+Operation System: Windows 10 Pro x64
+Log date: 9/10/2024 18:40:31
+
+Available KeyboardLayouts: 
+English (United States)
+
+
+Hardwares: 
+Name: Total of RAM, 16309.76 Mb or 17102020608 bytes
+Name: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz, 6 Cores
+Name: Intel(R) UHD Graphics 630, 1073741824 bytes
+
+
+Anti-Viruses: 
+Windows Defender

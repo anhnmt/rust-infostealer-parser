@@ -8,6 +8,14 @@ const META_HEADER: &str = r#"
 \*              \\_/ \\_/ \\_/ \\_/                \*
 "#;
 
+const REDLINE_HEADER: &str = r#"
+\*   ____  _____ ____  _     ___ _   _ _____   \*
+\*  |  _ \| ____|  _ \| |   |_ _| \\ | | ____|  \*
+\*  | |_\) |  _| | | | | |    | ||  \| |  _|    \*
+\*  |  _ <| |___| |_| | |___ | || |\\  | |___   \*
+\*  |_| \\_|_____|____/|_____|___|_| \\_|_____|  \*
+"#;
+
 pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>> {
     if body.trim().is_empty() {
         return Ok(false);
@@ -49,6 +57,22 @@ mod tests {
     fn meta_password() {
         let message = fs::read_to_string("./test_data/META_Passwords.txt").unwrap();
         let check = is_match_header(META_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    #[test]
+    fn redline_userinfo() {
+        let message = fs::read_to_string("./test_data/REDLINE_UserInformation.txt").unwrap();
+        let check = is_match_header(REDLINE_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    #[test]
+    fn redline_password() {
+        let message = fs::read_to_string("./test_data/REDLINE_Passwords.txt").unwrap();
+        let check = is_match_header(REDLINE_HEADER, message.as_str()).unwrap();
 
         assert_eq!(check, true);
     }
