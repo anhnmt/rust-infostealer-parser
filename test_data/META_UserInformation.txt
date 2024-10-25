@@ -4,8 +4,6 @@
 *             ( M | E | T | A )               *
 *              \_/ \_/ \_/ \_/                *
 *                                             *
-*   Telegram: https://t.me/godeless_sell_bot  *
-*                                             *
 ***********************************************
 
 Build ID: @GODELESS
