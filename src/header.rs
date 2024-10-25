@@ -1,4 +1,5 @@
-use regex::{Error, Regex};
+use regex::Regex;
+use std::error::Error;
 
 const META_HEADER: &str = r#"
 \*               _   _   _   _                 \*
@@ -7,9 +8,21 @@ const META_HEADER: &str = r#"
 \*              \\_/ \\_/ \\_/ \\_/                \*
 "#;
 
-fn is_match_header(header: &str, body: &str) -> Result<bool, Error> {
-    for line in header.lines().map(str::trim).filter(|&line| !line.is_empty()) {
-        if !Regex::new(line)?.is_match(body) {
+pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>> {
+    if body.trim().is_empty() {
+        return Ok(false);
+    }
+
+    let body_segment: String = body.lines().
+        take(50).
+        map(str::trim).
+        collect::<Vec<&str>>().
+        join("\n");
+
+    for line in header.lines().filter_map(|line| {
+        Some(line.trim()).filter(|s| !s.is_empty())
+    }) {
+        if !Regex::new(line)?.is_match(&body_segment) {
             return Ok(false);
         }
     }
