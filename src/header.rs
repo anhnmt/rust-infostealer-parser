@@ -15,7 +15,9 @@ pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>>
 
     let body_segment: String = body.lines().
         take(50).
-        map(str::trim).
+        filter_map(|line| {
+            Some(line.trim()).filter(|s| !s.is_empty())
+        }).
         collect::<Vec<&str>>().
         join("\n");
 
