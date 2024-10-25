@@ -1,0 +1,38 @@
+***********************************************
+*               _   _   _   _                 *
+*              / \ / \ / \ / \                *
+*             ( M | E | T | A )               *
+*              \_/ \_/ \_/ \_/                *
+*                                             *
+*   Telegram: https://t.me/godeless_sell_bot  *
+*                                             *
+***********************************************
+
+Build ID: @GODELESS
+IP: 217.165.250.22
+FileLocation: C:\Users\User\Documents\piratemamm\FgGuCouPF1pFNPlX8w1PRoZP.exe
+UserName: User
+MachineName: DESKTOP-TO32Q4R
+Country: AE
+Zip Code: UNKNOWN
+Location: Umm Al Quwain, Umm al Qaywayn
+HWID: ED91HGTYFOXM9OCK7444W8T641IZQ3AB
+Current Language: English (United States)
+ScreenSize: {Width=1920, Height=1080}
+TimeZone: (UTC+04:00) Abu Dhabi, Muscat
+Operation System: Windows 11 Pro x64
+Log date: 08/26/2024 14:39:18
+
+Available KeyboardLayouts: 
+English (United States)
+Arabic (Egypt)
+
+
+Hardwares: 
+Name: Total of RAM, 16237.39 Mb or 17026142208 bytes
+Name: 13th Gen Intel(R) Core(TM) i5-13400F, 10 Cores
+Name: NVIDIA GeForce RTX 4060, 4293918720 bytes
+
+
+Anti-Viruses: 
+Windows Defender
