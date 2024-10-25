@@ -36,8 +36,16 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn meta_header() {
+    fn meta_userinfo() {
         let message = fs::read_to_string("./test_data/META_UserInformation.txt").unwrap();
+        let check = is_match_header(META_HEADER, message.as_str()).unwrap();
+
+        assert_eq!(check, true);
+    }
+
+    #[test]
+    fn meta_password() {
+        let message = fs::read_to_string("./test_data/META_Passwords.txt").unwrap();
         let check = is_match_header(META_HEADER, message.as_str()).unwrap();
 
         assert_eq!(check, true);
