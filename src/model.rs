@@ -1,3 +1,4 @@
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
@@ -18,7 +19,7 @@ pub struct UserInformation {
     pub file_location: String,
     pub country: String,
     pub location: String,
-    pub log_date: String,
+    pub log_date: DateTime<Utc>,
     pub user_name: String,
     pub hardware_id: String,
     pub machine_name: String,
