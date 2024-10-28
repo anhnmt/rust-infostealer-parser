@@ -11,7 +11,7 @@ pub const APPLICATION: &str = "(Application|application):";
 pub fn extract(file_path: &str, body: &str) -> Vec<Credential> {
     let entries: Vec<&str> = body.split("===============").
         filter_map(|line| {
-            Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*"))
+            Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
         }).
         collect();
     if entries.is_empty() {
@@ -35,8 +35,8 @@ pub fn extract(file_path: &str, body: &str) -> Vec<Credential> {
             // URL
             if let Some(val) = get_match_string(URL, line) {
                 if !val.is_empty() {
-                    credential.url = val.to_string();
                     credential.host = get_host_from_url(val.trim());
+                    credential.url = val;
                 }
             }
 
