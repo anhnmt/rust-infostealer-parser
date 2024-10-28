@@ -17,7 +17,6 @@ pub struct Credential {
 
 #[derive(Default, Serialize, Deserialize, Validate, Debug)]
 pub struct UserInformation {
-    #[validate(length(min = 1))]
     pub ip_address: String,
     pub operating_system: String,
     pub file_location: String,
@@ -25,6 +24,7 @@ pub struct UserInformation {
     pub location: String,
     pub log_date: DateTime<Utc>,
     pub user_name: String,
+    #[validate(length(min = 1))]
     pub hardware_id: String,
     pub machine_name: String,
     pub machine_id: String,
