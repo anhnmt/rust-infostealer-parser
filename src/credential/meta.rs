@@ -43,21 +43,21 @@ pub fn extract(file_path: &str, body: &str) -> Vec<Credential> {
             // USERNAME
             if let Some(val) = get_match_string(USERNAME, line) {
                 if !val.is_empty() {
-                    credential.username = val.to_string()
+                    credential.username = val
                 }
             }
 
             // PASSWORD
             if let Some(val) = get_match_string(PASSWORD, line) {
                 if !val.is_empty() {
-                    credential.password = val.to_string()
+                    credential.password = val
                 }
             }
 
             // APPLICATION
             if let Some(val) = get_match_string(APPLICATION, line) {
                 if !val.is_empty() {
-                    credential.application = val.to_string()
+                    credential.application = val
                 }
             }
         }
