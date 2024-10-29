@@ -60,7 +60,7 @@ mod tests {
     #[test]
     fn user_info_ok() {
         let user_info = UserInformation {
-            ip_address: "https://www.facebook.com/login.php".to_string(),
+            hardware_id: "ED91HGTYFOXM9OCK7444W8T641IZQ3AB".to_string(),
             ..Default::default()
         };
 
