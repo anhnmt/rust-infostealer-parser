@@ -1,5 +1,7 @@
-use std::collections::HashSet;
-use std::error::Error;
+use std::{
+    collections::HashSet,
+    error::Error,
+};
 use unrar::Archive;
 
 pub const ZIP: &str = ".zip";
@@ -59,20 +61,25 @@ impl Extract {
 #[cfg(test)]
 mod tests {
     use crate::extract::Extract;
-    use std::collections::HashSet;
+    use std::{
+        collections::HashSet,
+        fs,
+    };
 
     #[test]
     fn default() {
-        let extract = Extract::new("test_data/@MANTICORECLOUD - 24.10 - 4300 PCS.rar")
+        let extract = Extract::new("test_data/@MANTICORECLOUD - 24.10.rar")
             .with_base("test_data/extract/")
             .extract_file()
             .unwrap();
-        assert_eq!(extract.len(), 1167);
+
+        let _ = fs::remove_dir_all("test_data/extract");
+        assert_eq!(extract.len(), 307);
     }
 
     #[test]
     fn whitelists() {
-        let extract = Extract::new("test_data/@MANTICORECLOUD - 24.10 - 4300 PCS.rar")
+        let extract = Extract::new("test_data/@MANTICORECLOUD - 24.10.rar")
             .with_base("test_data/extract/")
             .with_whitelists(HashSet::from([
                 "UserInformation.txt",
@@ -82,6 +89,7 @@ mod tests {
             .extract_file()
             .unwrap();
 
-        assert_eq!(extract.len(), 159);
+        let _ = fs::remove_dir_all("test_data/extract");
+        assert_eq!(extract.len(), 38);
     }
 }
