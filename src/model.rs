@@ -1,8 +1,9 @@
+use std::hash::{Hash, Hasher};
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-#[derive(Default, Serialize, Deserialize, Validate, Debug)]
+#[derive(Default, Serialize, Deserialize, Validate, Debug, Eq)]
 pub struct Credential {
     pub host: String,
     #[validate(length(min = 1))]
@@ -15,7 +16,25 @@ pub struct Credential {
     pub output_dir: String,
 }
 
-#[derive(Default, Serialize, Deserialize, Validate, Debug)]
+impl Credential {
+    fn sum(&self) -> String {
+        format!("{}|{}|{}|{}", self.url, self.username, self.password, self.application)
+    }
+}
+
+impl Hash for Credential {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.sum().hash(state);
+    }
+}
+
+impl PartialEq for Credential {
+    fn eq(&self, other: &Self) -> bool {
+        self.sum().eq(&other.sum())
+    }
+}
+
+#[derive(Default, Serialize, Deserialize, Validate, Debug, Eq)]
 pub struct UserInformation {
     pub ip_address: String,
     pub operating_system: String,
@@ -29,6 +48,24 @@ pub struct UserInformation {
     pub machine_name: String,
     pub machine_id: String,
     pub output_dir: String,
+}
+
+impl UserInformation {
+    fn sum(&self) -> String {
+        format!("{}|{}|{}|{}|{}", self.ip_address, self.user_name, self.machine_name, self.country, self.hardware_id)
+    }
+}
+
+impl Hash for UserInformation {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.sum().hash(state)
+    }
+}
+
+impl PartialEq for UserInformation {
+    fn eq(&self, other: &Self) -> bool {
+        self.sum().eq(&other.sum())
+    }
 }
 
 #[cfg(test)]

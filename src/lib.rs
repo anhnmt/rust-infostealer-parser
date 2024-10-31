@@ -61,4 +61,14 @@ mod tests {
         assert_eq!(parser.user_information.len(), 15);
         assert_eq!(parser.credentials.len(), 386)
     }
+
+    #[test]
+    fn godelesscloud_parser() {
+        let base = "test_data/GODELESS CLOUD";
+        let file = "test_data/GODELESS CLOUD.rar";
+        let parser = parse(base, file).unwrap();
+        let _ = fs::remove_dir_all(base);
+        assert_eq!(parser.user_information.len(), 20);
+        assert_eq!(parser.credentials.len(), 520)
+    }
 }

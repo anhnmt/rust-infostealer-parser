@@ -1,3 +1,4 @@
+use std::collections::HashSet;
 use crate::model::Credential;
 use crate::util::{get_host_from_url, get_match_string};
 use std::path::PathBuf;
@@ -18,7 +19,7 @@ pub fn parse(file_path: &str, body: &str) -> Option<Vec<Credential>> {
         return None;
     }
 
-    let mut credentials = Vec::new();
+    let mut credentials: HashSet<Credential> = HashSet::new();
 
     for entry in entries {
         let lines: Vec<&str> = entry.lines().filter_map(|line| {
@@ -63,11 +64,11 @@ pub fn parse(file_path: &str, body: &str) -> Option<Vec<Credential>> {
 
         if credential.validate().is_ok() {
             // println!("{:?}", credential);
-            credentials.push(credential);
+            credentials.insert(credential);
         }
     }
 
-    Some(credentials)
+    Some(credentials.into_iter().collect())
 }
 
 #[cfg(test)]
