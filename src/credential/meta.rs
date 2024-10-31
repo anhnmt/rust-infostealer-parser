@@ -8,7 +8,7 @@ pub const USERNAME: &str = "(Username|username):";
 pub const PASSWORD: &str = "(Password|password):";
 pub const APPLICATION: &str = "(Application|application):";
 
-pub fn extract(file_path: &str, body: &str) -> Vec<Credential> {
+pub fn parse(file_path: &str, body: &str) -> Vec<Credential> {
     let entries: Vec<&str> = body.split("===============").
         filter_map(|line| {
             Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
@@ -73,14 +73,14 @@ pub fn extract(file_path: &str, body: &str) -> Vec<Credential> {
 
 #[cfg(test)]
 mod tests {
-    use crate::credential::meta::extract;
+    use crate::credential::meta::parse;
     use std::fs;
 
     #[test]
     fn meta_credentials() {
         let file_path = "./test_data/META_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let credentials = extract(file_path, body.as_str());
+        let credentials = parse(file_path, body.as_str());
         assert_eq!(credentials.len(), 3)
     }
 
@@ -88,7 +88,7 @@ mod tests {
     fn bradmax_credentials() {
         let file_path = "./test_data/BRADMAX_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let credentials = extract(file_path, body.as_str());
+        let credentials = parse(file_path, body.as_str());
         assert_eq!(credentials.len(), 2)
     }
 
@@ -96,7 +96,7 @@ mod tests {
     fn manticore_credentials() {
         let file_path = "./test_data/MANTICORE_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let credentials = extract(file_path, body.as_str());
+        let credentials = parse(file_path, body.as_str());
         assert_eq!(credentials.len(), 4)
     }
 
@@ -104,7 +104,7 @@ mod tests {
     fn redline_credentials() {
         let file_path = "./test_data/REDLINE_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let credentials = extract(file_path, body.as_str());
+        let credentials = parse(file_path, body.as_str());
         assert_eq!(credentials.len(), 1)
     }
 }

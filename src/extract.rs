@@ -9,31 +9,31 @@ pub const RAR: &str = ".rar";
 pub const SEVEN_Z: &str = ".7z";
 
 #[derive(Debug, Default)]
-pub struct Extract {
-    pub base: &'static str,
-    pub file: &'static str,
-    pub whitelists: HashSet<&'static str>,
+pub struct Extract<'a> {
+    pub base: &'a str,
+    pub file: &'a str,
+    pub whitelists: HashSet<&'a str>,
 }
 
-impl Extract {
-    pub fn new(file: &'static str) -> Self {
+impl<'a> Extract<'a> {
+    pub fn new(file: &'a str) -> Self {
         Self {
             file,
             ..Default::default()
         }
     }
 
-    pub fn with_base(mut self, base: &'static str) -> Self {
+    pub fn with_base(mut self, base: &'a str) -> Self {
         self.base = base;
         self
     }
 
-    pub fn with_whitelists(mut self, whitelists: HashSet<&'static str>) -> Self {
+    pub fn with_whitelists(mut self, whitelists: HashSet<&'a str>) -> Self {
         self.whitelists = whitelists;
         self
     }
 
-    pub fn extract_file(self) -> Result<Vec<String>, Box<dyn Error>> {
+    pub fn extract_file(&self) -> Result<Vec<String>, Box<dyn Error>> {
         let mut archive = Archive::new(self.file).open_for_processing()?;
         let mut files: Vec<String> = Vec::new();
 
@@ -42,7 +42,7 @@ impl Extract {
 
             archive = if entry.is_file() {
                 match entry.filename.file_name().and_then(|os_str| os_str.to_str()) {
-                    Some(file_name) if self.whitelists.is_empty() || self.whitelists.contains(&file_name.trim()) => {
+                    Some(file_name) if self.whitelists.is_empty() || self.whitelists.contains(file_name) => {
                         files.push(entry.filename.to_string_lossy().to_string());
                         header.extract_with_base(self.base)?
                     }

@@ -15,7 +15,7 @@ pub const HARDWARE_ID: &str = "(HWID):";
 pub const OPERATING_SYSTEM: &str = "(Operation System):";
 pub const LOG_DATE: &str = "(Log date):";
 
-pub fn extract(file_path: &str, body: &str) -> Option<UserInformation> {
+pub fn parse(file_path: &str, body: &str) -> Option<UserInformation> {
     let lines: Vec<&str> = body.lines()
         .filter_map(|line| {
             Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
@@ -132,14 +132,14 @@ fn parse_log_date(log_date: &str) -> Option<DateTime<Utc>> {
 
 #[cfg(test)]
 mod tests {
-    use crate::user_information::meta::extract;
+    use crate::user_information::meta::parse;
     use std::fs;
 
     #[test]
     fn meta_user_information() {
         let file_path = "./test_data/META_UserInformation.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let user_information = extract(file_path, body.as_str());
+        let user_information = parse(file_path, body.as_str());
         assert_eq!(user_information.is_some(), true)
     }
 
@@ -147,7 +147,7 @@ mod tests {
     fn bradmax_user_information() {
         let file_path = "./test_data/BRADMAX_UserInformation.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let user_information = extract(file_path, body.as_str());
+        let user_information = parse(file_path, body.as_str());
         assert_eq!(user_information.is_some(), true)
     }
 
@@ -155,7 +155,7 @@ mod tests {
     fn manticore_user_information() {
         let file_path = "./test_data/MANTICORE_UserInformation.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let user_information = extract(file_path, body.as_str());
+        let user_information = parse(file_path, body.as_str());
         assert_eq!(user_information.is_some(), true)
     }
 
@@ -163,7 +163,7 @@ mod tests {
     fn redline_user_information() {
         let file_path = "./test_data/REDLINE_UserInformation.txt";
         let body = fs::read_to_string(file_path).unwrap();
-        let user_information = extract(file_path, body.as_str());
+        let user_information = parse(file_path, body.as_str());
         assert_eq!(user_information.is_some(), true)
     }
 }
