@@ -1,6 +1,6 @@
-use std::path::PathBuf;
 use crate::model::Credential;
 use crate::util::{get_host_from_url, get_match_string};
+use std::path::PathBuf;
 use validator::Validate;
 
 pub const URL: &str = "(URL|url):";
@@ -8,23 +8,22 @@ pub const USERNAME: &str = "(Username|username):";
 pub const PASSWORD: &str = "(Password|password):";
 pub const APPLICATION: &str = "(Application|application):";
 
-pub fn parse(file_path: &str, body: &str) -> Vec<Credential> {
+pub fn parse(file_path: &str, body: &str) -> Option<Vec<Credential>> {
     let entries: Vec<&str> = body.split("===============").
         filter_map(|line| {
             Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
         }).
         collect();
     if entries.is_empty() {
-        return Vec::new();
+        return None;
     }
 
     let mut credentials = Vec::new();
 
     for entry in entries {
-        let lines: Vec<&str> = entry.lines().collect();
-        if lines.is_empty() {
-            continue;
-        }
+        let lines: Vec<&str> = entry.lines().filter_map(|line| {
+            Some(line.trim()).filter(|s| !s.is_empty())
+        }).collect();
 
         let mut credential = Credential {
             output_dir: PathBuf::from(file_path).parent().unwrap().to_str().unwrap().to_string(),
@@ -68,7 +67,7 @@ pub fn parse(file_path: &str, body: &str) -> Vec<Credential> {
         }
     }
 
-    credentials
+    Some(credentials)
 }
 
 #[cfg(test)]
@@ -81,7 +80,7 @@ mod tests {
         let file_path = "./test_data/META_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
         let credentials = parse(file_path, body.as_str());
-        assert_eq!(credentials.len(), 3)
+        assert_eq!(credentials.unwrap().len(), 3)
     }
 
     #[test]
@@ -89,7 +88,7 @@ mod tests {
         let file_path = "./test_data/BRADMAX_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
         let credentials = parse(file_path, body.as_str());
-        assert_eq!(credentials.len(), 2)
+        assert_eq!(credentials.unwrap().len(), 2)
     }
 
     #[test]
@@ -97,7 +96,7 @@ mod tests {
         let file_path = "./test_data/MANTICORE_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
         let credentials = parse(file_path, body.as_str());
-        assert_eq!(credentials.len(), 4)
+        assert_eq!(credentials.unwrap().len(), 4)
     }
 
     #[test]
@@ -105,6 +104,6 @@ mod tests {
         let file_path = "./test_data/REDLINE_Passwords.txt";
         let body = fs::read_to_string(file_path).unwrap();
         let credentials = parse(file_path, body.as_str());
-        assert_eq!(credentials.len(), 1)
+        assert_eq!(credentials.unwrap().len(), 1)
     }
 }

@@ -58,6 +58,13 @@ pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>>
     Ok(true)
 }
 
+pub fn is_meta_group(body: &str) -> bool {
+    is_match_header(META_HEADER, body).is_ok() ||
+        is_match_header(REDLINE_HEADER, body).is_ok() ||
+        is_match_header(BRADMAX_HEADER, body).is_ok() ||
+        is_match_header(MANTICORE_HEADER, body).is_ok()
+}
+
 #[cfg(test)]
 mod tests {
     use crate::header::*;
