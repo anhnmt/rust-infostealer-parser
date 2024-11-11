@@ -1,6 +1,6 @@
-use std::hash::{Hash, Hasher};
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
+use std::hash::{Hash, Hasher};
 use validator::Validate;
 
 #[derive(Default, Serialize, Deserialize, Validate, Debug, Eq)]
@@ -18,7 +18,10 @@ pub struct Credential {
 
 impl Credential {
     fn sum(&self) -> String {
-        format!("{}|{}|{}|{}", self.url, self.username, self.password, self.application)
+        format!(
+            "{}|{}|{}|{}",
+            self.url, self.username, self.password, self.application
+        )
     }
 }
 
@@ -52,7 +55,10 @@ pub struct UserInformation {
 
 impl UserInformation {
     fn sum(&self) -> String {
-        format!("{}|{}|{}|{}|{}", self.ip_address, self.user_name, self.machine_name, self.country, self.hardware_id)
+        format!(
+            "{}|{}|{}|{}|{}",
+            self.ip_address, self.user_name, self.machine_name, self.country, self.hardware_id
+        )
     }
 }
 

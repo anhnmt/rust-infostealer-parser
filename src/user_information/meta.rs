@@ -16,9 +16,11 @@ pub const OPERATING_SYSTEM: &str = "(Operation System):";
 pub const LOG_DATE: &str = "(Log date):";
 
 pub fn parse(file_path: &str, body: &str) -> Option<UserInformation> {
-    let lines: Vec<&str> = body.lines()
+    let lines: Vec<&str> = body
+        .lines()
         .filter_map(|line| {
-            Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
+            Some(line.trim())
+                .filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
         })
         .collect();
     if lines.is_empty() {
@@ -26,7 +28,7 @@ pub fn parse(file_path: &str, body: &str) -> Option<UserInformation> {
     }
 
     let mut user_information = UserInformation {
-        output_dir: PathBuf::from(file_path).parent().unwrap().to_str().unwrap().to_string(),
+        output_dir: PathBuf::from(file_path).parent()?.to_str()?.to_string(),
         ..Default::default()
     };
 

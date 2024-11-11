@@ -1,7 +1,4 @@
-use std::{
-    collections::HashSet,
-    error::Error,
-};
+use std::{collections::HashSet, error::Error};
 use unrar::Archive;
 
 pub const ZIP: &str = ".zip";
@@ -41,8 +38,14 @@ impl<'a> Extract<'a> {
             let entry = header.entry();
 
             archive = if entry.is_file() {
-                match entry.filename.file_name().and_then(|os_str| os_str.to_str()) {
-                    Some(file_name) if self.whitelists.is_empty() || self.whitelists.contains(file_name) => {
+                match entry
+                    .filename
+                    .file_name()
+                    .and_then(|os_str| os_str.to_str())
+                {
+                    Some(file_name)
+                        if self.whitelists.is_empty() || self.whitelists.contains(file_name) =>
+                    {
                         files.push(entry.filename.to_string_lossy().to_string());
                         header.extract_with_base(self.base)?
                     }
@@ -61,10 +64,7 @@ impl<'a> Extract<'a> {
 #[cfg(test)]
 mod tests {
     use crate::extract::Extract;
-    use std::{
-        collections::HashSet,
-        fs,
-    };
+    use std::{collections::HashSet, fs};
 
     #[test]
     fn default() {

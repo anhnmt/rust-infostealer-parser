@@ -39,17 +39,17 @@ pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>>
         return Ok(false);
     }
 
-    let body_segment: String = body.lines().
-        take(50).
-        filter_map(|line| {
-            Some(line.trim()).filter(|s| !s.is_empty())
-        }).
-        collect::<Vec<&str>>().
-        join("\n");
+    let body_segment: String = body
+        .lines()
+        .take(50)
+        .filter_map(|line| Some(line.trim()).filter(|s| !s.is_empty()))
+        .collect::<Vec<&str>>()
+        .join("\n");
 
-    for line in header.lines().filter_map(|line| {
-        Some(line.trim()).filter(|s| !s.is_empty())
-    }) {
+    for line in header
+        .lines()
+        .filter_map(|line| Some(line.trim()).filter(|s| !s.is_empty()))
+    {
         if !Regex::new(line)?.is_match(&body_segment) {
             return Ok(false);
         }
@@ -59,10 +59,10 @@ pub fn is_match_header(header: &str, body: &str) -> Result<bool, Box<dyn Error>>
 }
 
 pub fn is_meta_group(body: &str) -> bool {
-    is_match_header(META_HEADER, body).is_ok() ||
-        is_match_header(REDLINE_HEADER, body).is_ok() ||
-        is_match_header(BRADMAX_HEADER, body).is_ok() ||
-        is_match_header(MANTICORE_HEADER, body).is_ok()
+    is_match_header(META_HEADER, body).is_ok()
+        || is_match_header(REDLINE_HEADER, body).is_ok()
+        || is_match_header(BRADMAX_HEADER, body).is_ok()
+        || is_match_header(MANTICORE_HEADER, body).is_ok()
 }
 
 #[cfg(test)]

@@ -1,6 +1,6 @@
-use std::collections::HashSet;
 use crate::model::Credential;
 use crate::util::{get_host_from_url, get_match_string};
+use std::collections::HashSet;
 use std::path::PathBuf;
 use validator::Validate;
 
@@ -10,11 +10,13 @@ pub const PASSWORD: &str = "(Password|password):";
 pub const APPLICATION: &str = "(Application|application):";
 
 pub fn parse(file_path: &str, body: &str) -> Option<Vec<Credential>> {
-    let entries: Vec<&str> = body.split("===============").
-        filter_map(|line| {
-            Some(line.trim()).filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
-        }).
-        collect();
+    let entries: Vec<&str> = body
+        .split("===============")
+        .filter_map(|line| {
+            Some(line.trim())
+                .filter(|s| !s.is_empty() && !s.starts_with("*") && !s.starts_with("─"))
+        })
+        .collect();
     if entries.is_empty() {
         return None;
     }
@@ -22,12 +24,13 @@ pub fn parse(file_path: &str, body: &str) -> Option<Vec<Credential>> {
     let mut credentials: HashSet<Credential> = HashSet::new();
 
     for entry in entries {
-        let lines: Vec<&str> = entry.lines().filter_map(|line| {
-            Some(line.trim()).filter(|s| !s.is_empty())
-        }).collect();
+        let lines: Vec<&str> = entry
+            .lines()
+            .filter_map(|line| Some(line.trim()).filter(|s| !s.is_empty()))
+            .collect();
 
         let mut credential = Credential {
-            output_dir: PathBuf::from(file_path).parent().unwrap().to_str().unwrap().to_string(),
+            output_dir: PathBuf::from(file_path).parent()?.to_str()?.to_string(),
             ..Default::default()
         };
 

@@ -3,13 +3,14 @@ use extract::Extract;
 use std::collections::HashSet;
 use std::error::Error;
 use std::fs;
+use std::path::Path;
 
+pub mod credential;
+pub mod extract;
 pub mod header;
 pub mod model;
-pub mod credential;
-pub mod util;
 pub mod user_information;
-pub mod extract;
+pub mod util;
 
 #[derive(Default)]
 pub struct Parser {
@@ -31,15 +32,22 @@ pub fn parse(base: &str, file: &str) -> Result<Parser, Box<dyn Error>> {
 
     let mut parser = Parser::default();
 
-    for file in extract {
-        if let Ok(body) = fs::read_to_string(format!("{}/{}", base, file)) {
-            if let Some(user_information) = user_information::parse(&file, &body) {
-                parser.user_information.push(user_information);
-                continue;
-            }
+    for filename in extract {
+        let trimmed_file = filename.trim();
+        let file_path = Path::new(base).join(trimmed_file);
 
-            if let Some(credentials) = credential::parse(&file, &body) {
-                parser.credentials.extend(credentials);
+        if let Ok(body) = fs::read_to_string(file_path) {
+            // Find user information first
+            match user_information::parse(trimmed_file, &body) {
+                Some(user_info) => {
+                    parser.user_information.push(user_info);
+                }
+                // If user information not found, try credentials
+                None => {
+                    if let Some(credentials) = credential::parse(trimmed_file, &body) {
+                        parser.credentials.extend(credentials);
+                    }
+                }
             }
         }
     }
