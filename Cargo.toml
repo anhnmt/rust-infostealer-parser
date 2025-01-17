@@ -4,13 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-chrono = { version = "0.4.38", features = ["serde"] }
+chrono = { version = "0.4.39", features = ["serde"] }
 regex = "1.11.1"
-serde = { version = "1.0.213", features = ["derive"] }
-serde_json = "1.0.132"
-unrar = "0.5.6"
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.135"
+unrar = "0.5.7"
 url = "2.5.2"
-validator = { version = "0.18.1", features = ["derive"] }
+validator = { version = "0.19.0", features = ["derive"] }
 
 [profile.release]
 strip = true  # Automatically strip symbols from the binary.

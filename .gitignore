@@ -1,4 +1,5 @@
 .idea
+Cargo.lock
 /target
 /test_data/*.rar
 /test_data/*.zip

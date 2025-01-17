@@ -57,26 +57,26 @@ pub fn parse(base: &str, file: &str) -> Result<Parser, Box<dyn Error>> {
 
 #[cfg(test)]
 mod tests {
-    // use crate::parse;
-    // use std::fs;
+    use crate::parse;
+    use std::fs;
 
-    // #[test]
-    // fn manticore_parser() {
-    //     let base = "test_data/@MANTICORECLOUD - 24.10";
-    //     let file = "test_data/@MANTICORECLOUD - 24.10.rar";
-    //     let parser = parse(base, file).unwrap();
-    //     let _ = fs::remove_dir_all(base);
-    //     assert_eq!(parser.user_information.len(), 15);
-    //     assert_eq!(parser.credentials.len(), 386)
-    // }
+    #[test]
+    fn manticore_parser() {
+        let base = "test_data/@MANTICORECLOUD - 24.10";
+        let file = "test_data/@MANTICORECLOUD - 24.10.rar";
+        let parser = parse(base, file).unwrap();
+        let _ = fs::remove_dir_all(base);
+        assert_eq!(parser.user_information.len(), 15);
+        assert_eq!(parser.credentials.len(), 386)
+    }
 
-    // #[test]
-    // fn godelesscloud_parser() {
-    //     let base = "test_data/GODELESS CLOUD";
-    //     let file = "test_data/GODELESS CLOUD.rar";
-    //     let parser = parse(base, file).unwrap();
-    //     let _ = fs::remove_dir_all(base);
-    //     assert_eq!(parser.user_information.len(), 20);
-    //     assert_eq!(parser.credentials.len(), 520)
-    // }
+    #[test]
+    fn godelesscloud_parser() {
+        let base = "test_data/GODELESS CLOUD";
+        let file = "test_data/GODELESS CLOUD.rar";
+        let parser = parse(base, file).unwrap();
+        let _ = fs::remove_dir_all(base);
+        assert_eq!(parser.user_information.len(), 20);
+        assert_eq!(parser.credentials.len(), 520)
+    }
 }
